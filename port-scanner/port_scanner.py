@@ -1,4 +1,21 @@
-#!/usr/bin/python3
-print("Hello World!!")
-print("Welcome to Python programming,\t Programming in python is fun.")
-print("Hope to complete this project as soon as possible")
+#!/usr/bin/python
+import os
+import sys
+import socket
+
+def returnBanner(ip, port):
+    try:
+        socket.setdefaulttimeout(3)
+        soc = socket.socket()
+        soc.connect((ip,port))
+        banner = soc.recv(1024)
+        return banner
+    except Exception as e:
+        print("[-] Error " + str(e))
+        
+def main():
+    banner = returnBanner("192.168.1.1", 80)
+    print(banner)
+    
+if __name__ == '__main__':
+    main()
